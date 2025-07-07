@@ -8,16 +8,12 @@
     <link rel="stylesheet" href="{% static 'custom.css' %}" type="text/css">
 </head>
 <body>
-    <h1>{{ course_title|lower}}</h1>
-    <p>Today's date : {{ current_date | date:"F j,Y" }}</p>
-
-    <h2>User Information:</h2>
-    <ul>
-        <li>Username: {{ user.name }}</li>
-        <li>Email: {{ user.email }}</li>
-        
-    <h2>Product Price:</h2>
-    <p>${{ product_price|floatformat:2 }}</p>
-    <p>{{ random_text|truncatechars:20 }}</p>
+    {% for product in products %}
+        <div class="product-box" style="border: 1px solid #ccc; border-radius: 8px; padding: 16px; margin: 16px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.05); background: #fff;">
+            <h2 style="margin-top: 0;">{{ product.name }}</h2>
+            <p><strong>Price:</strong> {{ product.price }}</p>
+            <p><strong>Description:</strong> {{ product.description }}</p>
+        </div>
+    {% endfor %}
 </body> 
-</html>
+</html>     

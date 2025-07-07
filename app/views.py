@@ -4,17 +4,15 @@ from datetime import datetime
 
 # Create your views here.
 def index(request):
-    context = {
-        'course_title':'Django Course',
-        'current_date': datetime.now(),
-        'user' : {
-            'name':'Anant',
-            'email': 'anant372003@gmail.com',
-        
-        },
-        'product_price':9999.999999,
-        'random_text': 'wanna run and explore your Django database in VS Code like a pro? Say less! I got you covered step-by-step',
+   products = [
+       {"name": "laptop", "price": 100, "description": "This is product 1."},
+       {"name": " smartphone", "price": 200, "description": "This is product 2."},
+       {"name": "headphone ", "price": 300, "description": "This is product 3."},
+       {"name": "camera ", "price": 400, "description": "This is product 4."},
+   ]
 
-    }
+   context = {
+      "products": products,
+   }
 
-    return render(request,"index.html",context)
+   return render(request,"index.html",context)
