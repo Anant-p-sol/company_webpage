@@ -12,7 +12,8 @@ def index(request):
    ]
 
    context = {
-      "products": products,
+      "names" : ["Anant Kumar", "Anant", "Kumar", "Adwaya"],
+      "can_display_name ": True,
    }
 
    return render(request,"index.html",context)
