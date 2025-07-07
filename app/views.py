@@ -4,16 +4,12 @@ from datetime import datetime
 
 # Create your views here.
 def index(request):
-   products = [
-       {"name": "laptop", "price": 100, "description": "This is product 1."},
-       {"name": " smartphone", "price": 200, "description": "This is product 2."},
-       {"name": "headphone ", "price": 300, "description": "This is product 3."},
-       {"name": "camera ", "price": 400, "description": "This is product 4."},
-   ]
+   context = {}
+   return render(request, "index.html", context)
 
-   context = {
-      "names" : ["Anant Kumar", "Anant", "Kumar", "Adwaya"],
-      "can_display_name ": True,
-   }
+   
 
-   return render(request,"index.html",context)
+def about_us(request):
+   context = {}
+   return render(request, "about_us.html", context)
+       
