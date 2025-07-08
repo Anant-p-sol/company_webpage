@@ -11,8 +11,7 @@
 
 </head>
 <body>
-<div class="header">
-    <h1>HEADER 1</h1>
+    {% include 'assets/header.html' %}
 </div>
 <div class="main">
     <h1><a href="{% url 'home' %}">home page 1</a></h1>
@@ -21,8 +20,6 @@
     {% block mainContent %}  {% endblock %}
     
 </div>
-<div class="footer">
-    <h1>FOOTER </h1>
-</div>
+        {% include 'assets/footer.html' %}
 </body> 
 </html>     
