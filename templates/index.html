@@ -1,26 +1,9 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'header.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'footer.css' %}" type="text/css">
-    <style>.main h1{ color:blue}</style>
-</head>
-<body>
-<div class="header">
-    <h1>HEADER 1</h1>
-</div>
-<div class="main">
-    <h1><a href="{% url 'home' %}">home page 1</a></h1>
-    <h1><a href="{% url 'aboutus' %}">about us page 1</a></h1>
+{% extends 'assets/main.html' %}
 
+{% block customStyle %}
+    <style>.main h1{ color:blue}</style>
+{% endblock %}
+
+{% block mainContent %}
     <p>Welcome to the Home page.....</p>
-</div>
-<div class="footer">
-    <h1>FOOTER </h1>
-</div>
-</body> 
-</html>     
+{% endblock %}
