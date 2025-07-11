@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from app.models import (
     GeneralInfo,
     Service,
@@ -18,6 +18,8 @@ def index(request):
    testinomials = Testinomial.objects.all()
 
    faqs = FrequentlyAskedQuestion.objects.all()
+
+
 
    context = {
        "location": general_info.location,
@@ -43,5 +45,20 @@ def index(request):
 
    return render(request, "index.html", context)
 
-def about_us(request):
-    return render(request, "about_us.html", {})
+
+def contect_form(request):
+   
+    if request.method == 'POST':
+        print("\n USer has submit a contact form \n")
+        print(f"request.POST: {request.POST}")
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        subject = request.POST.get('subject')
+
+        print(f"Name: {name}, Email: {email}, Subject: {subject}, Message: {message}")
+
+    if request.method == 'GET':
+        print("\n User has acess the contact view by url\n")
+
+    return redirect('home')
