@@ -1,5 +1,10 @@
 from django.contrib import admin
-from app.models import GeneralInfo
+from app.models import (
+    GeneralInfo,
+    Service ,
+    Testinomial,
+    FrequentlyAskedQuestion,
+    )
 
 # Register your models here.
 
@@ -27,3 +32,27 @@ class GeneralInfoAdmin(admin.ModelAdmin):
     rendomly_field = [
         'email'
         ]
+    
+@admin.register(Service)
+class ServiceAdmin(admin.ModelAdmin):
+    list_display = ("tittle", "description")
+
+
+
+    search_fields = ("tittle", "description")
+
+@admin.register(Testinomial)
+class TestinomialAdmin(admin.ModelAdmin):
+    list_display = ("user_name", "user_job_title", "display_rating_count")
+
+
+    def display_rating_count(self, obj):
+        return "*" * obj.rating_count
+    display_rating_count.short_description = "Rating"
+
+@admin.register(FrequentlyAskedQuestion)
+class FrequentlyAskedQuestionAdmin(admin.ModelAdmin):
+    list_display = ["question", "answer",]
+
+
+    

@@ -1,22 +1,47 @@
 from django.shortcuts import render
-from app.models import GeneralInfo
+from app.models import (
+    GeneralInfo,
+    Service,
+    Testinomial,
+    FrequentlyAskedQuestion,
+    )
+
 
 
 # Create your views here.
 def index(request):
 
+   general_info = GeneralInfo.objects.first()
+   
+   services = Service.objects.all()
 
-   # general_info = GeneralInfo.objects.first()
-   # print(f"General Info: {GeneralInfo.location}")
+   testinomials = Testinomial.objects.all()
 
-   all_records = GeneralInfo.objects.all()
-   print(all_records)
-   context = {}
+   faqs = FrequentlyAskedQuestion.objects.all()
+
+   context = {
+       "location": general_info.location,
+       "email": general_info.email,
+       "phone": general_info.phone,
+       "company_name": general_info.company_name,
+       "open_hours": general_info.open_hours,
+       "video_url": general_info.video_url,
+       "twitter_url":general_info.twitter_url,
+       "facebook_url":general_info.facebook_url,
+       "instagram_url":general_info.instagram_url,
+       "linkedin_url":general_info.linkedin_url,
+       
+       "services" : services,
+
+       "testinomials" : testinomials,
+
+       "faqs" : faqs,
+
+   }
+
+   print(f"Context : { context }")
+
    return render(request, "index.html", context)
 
-   
-
 def about_us(request):
-   context = {}
-   return render(request, "about_us.html", context)
-            
+    return render(request, "about_us.html", {})
