@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact form submission</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f6f6f6;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            padding: 32px;
+        }
+        .email-header {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+        .email-header h2 {
+            margin: 0;
+            color: #333;
+        }
+        .email-body {
+            color: #444;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        .email-footer {
+            border-top: 1px solid #eee;
+            padding-top: 16px;
+            color: #888;
+            font-size: 13px;
+            text-align: center;
+        }
+        .btn {
+            display: inline-block;
+            background: #007bff;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 16px;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+    </style>    
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h2>{{ subject }}</h2>
+        </div>
+        <div class="email-body">
+            <p><strong>Name:</strong> {{ name }}</p>
+            <p><strong>Email:</strong> {{ email }}</p>
+            <p><strong>Subject:</strong> {{ subject }}</p>
+            <p><strong>Message:</strong></p>
+            <p>{{ message }}</p>
+        </div>
+        <div class="email-footer">
+            &copy; 2024 Company Name. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>
