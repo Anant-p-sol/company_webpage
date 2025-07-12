@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
+from django.contrib import messages
 from app.models import (
     GeneralInfo,
     Service,
@@ -78,10 +79,11 @@ def contect_form(request):
                 fail_silently=False,
             )
         except Exception as e:
-            print(f"email is failed")
+            messages.error(request, "there is an error, please try again later")
         
         else:
-            print(f"email has been sent successfully")
+            messages.success(request, "Your message has been sent successfully!")
+            
 
     if request.method == 'GET':
         print("\n User has acess the contact view by url\n")

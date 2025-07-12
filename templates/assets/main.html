@@ -39,6 +39,13 @@
 </head>
 
 <body>
+  {% for message in messages %}
+    {% if message.tags == 'error' %}
+      <h1 style="color: red; text-align: center;">Error : {{ message }}</h1>
+    {% else %} 
+      <h1 style="color: green; text-align: center;">Success : {{ message }}</h1>
+    {% endif %}
+  {% endfor%}
 
   {% include 'assets/header.html' %}
 
