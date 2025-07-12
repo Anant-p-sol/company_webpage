@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.core.mail import send_mail
+from django.conf import settings
 from app.models import (
     GeneralInfo,
     Service,
@@ -56,8 +58,13 @@ def contect_form(request):
         message = request.POST.get('message')
         subject = request.POST.get('subject')
 
-        print(f"Name: {name}, Email: {email}, Subject: {subject}, Message: {message}")
-
+        send_mail(
+            subject=subject,
+            message=f"{name} - {email} - {message}",
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=[settings.EMAIL_HOST_USER],
+            fail_silently=False,
+        )
     if request.method == 'GET':
         print("\n User has acess the contact view by url\n")
 
