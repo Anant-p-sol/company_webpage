@@ -67,15 +67,22 @@ def contect_form(request):
         }
         html_content = render_to_string('email.html', context)
 
-        send_mail(
-            subject=subject,
-            message=None,
-            html_message=html_content,
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[settings.EMAIL_HOST_USER],
-            fail_silently=False,
-        )
+        try:
+
+            send_mail(
+                subject=subject,
+                message=None,
+                html_message=html_content,
+                from_email=settings.EMAIL_HOST_USER,
+                recipient_list=[settings.EMAIL_HOST_USER],
+                fail_silently=False,
+            )
+        except Exception as e:
+            print(f"email is failed")
         
+        else:
+            print(f"email has been sent successfully")
+
     if request.method == 'GET':
         print("\n User has acess the contact view by url\n")
 
