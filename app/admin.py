@@ -4,6 +4,7 @@ from app.models import (
     Service ,
     Testinomial,
     FrequentlyAskedQuestion,
+    ContactFormLog,
     )
 
 # Register your models here.
@@ -16,17 +17,17 @@ class GeneralInfoAdmin(admin.ModelAdmin):
     ordering = ('company_name',)
 
 
-    # # show the disabled and permission
-    # def has_add_permission(self, request , obj=None):
-    #     return False
+    # show the disabled and permission
+    def has_add_permission(self, request , obj=None):
+        return False
 
-    # # # show the disabled update permission
-    # def has_change_permission(self, request, obj=None):
-    #     return False
+    # # show the disabled update permission
+    def has_change_permission(self, request, obj=None):
+        return False
 
-    # # # show the disabled delete permission
-    # def has_delete_permission(self, request, obj=None):
-    #     return False
+    # # show the disabled delete permission
+    def has_delete_permission(self, request, obj=None):
+        return False
 
     # # show you can set field to diable update
     rendomly_field = [
@@ -55,4 +56,23 @@ class FrequentlyAskedQuestionAdmin(admin.ModelAdmin):
     list_display = ["question", "answer",]
 
 
+@admin.register(ContactFormLog)
+class ContactFormLogAdmin(admin.ModelAdmin):
+    list_display = [
+        'email',
+        'is_success',
+        'is_error',
+        'action_time', 
+        ]
     
+    # show the disabled and permission
+    def has_add_permission(self, request , obj=None):
+        return False
+
+    # show the disabled update permission
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    # show the disabled delete permission
+    def has_delete_permission(self, request, obj=None):
+        return False

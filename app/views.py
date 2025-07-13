@@ -3,11 +3,13 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
 from django.contrib import messages
+from django.utils import timezone
 from app.models import (
     GeneralInfo,
     Service,
     Testinomial,
     FrequentlyAskedQuestion,
+    ContactFormLog,
     )
 
 
@@ -68,6 +70,10 @@ def contect_form(request):
         }
         html_content = render_to_string('email.html', context)
 
+        is_success = False
+        is_error = False
+        error_message = ""
+
         try:
 
             send_mail(
@@ -79,10 +85,26 @@ def contect_form(request):
                 fail_silently=False,
             )
         except Exception as e:
-            messages.error(request, "there is an error, please try again later")
+            is_error = True
+            error_message = str(e)
+            messages.error(request, "There is an error, please try again later")
         
         else:
+            is_success = True
             messages.success(request, "Your message has been sent successfully!")
+
+
+        ContactFormLog.objects.create(
+            name=name,
+            email=email,
+            subject=subject,
+            message=message,
+            action_time=timezone.now(),
+            is_success=is_success,
+            is_error=is_error,
+            error_message=error_message,
+
+        )
             
 
     if request.method == 'GET':
