@@ -10,6 +10,7 @@ from app.models import (
     Testinomial,
     FrequentlyAskedQuestion,
     ContactFormLog,
+    Blog,
     )
 
 
@@ -25,6 +26,14 @@ def index(request):
 
    faqs = FrequentlyAskedQuestion.objects.all()
 
+   recent_blogs = Blog.objects.all().order_by('-created_at')[:3]  # Get the 3 most recent blogs
+
+   for blog in recent_blogs:
+       print(f"Blog : {blog }")
+       print(f"blog.created_at : {blog.created_at }")
+       print(f"blog.author : {blog.author }")
+       print(f"blog.author.country : {blog.author.country }")
+       
 
 
    context = {
@@ -44,6 +53,8 @@ def index(request):
        "testinomials" : testinomials,
 
        "faqs" : faqs,
+       
+       "recent_blogs": recent_blogs,
 
    }
 
